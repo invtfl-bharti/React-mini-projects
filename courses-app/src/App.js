@@ -12,6 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 function App() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState(filterData[0].title);
 
   async function fetchData() {
     setLoading(true);
@@ -31,20 +32,27 @@ function App() {
     fetchData();
   }, []);
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-bgDark2">
       <div>
         <Navbar />
       </div>
-      
-        <div className="bg-bgDark2">
-          <div>
-            <Filter filterData={filterData} />
-          </div>
-          <div className="flex flex-wrap justify-center items-center w-11/12 mx-auto max-w-[1200px] min-h-[50vh]">
-            {loading ? <Spinner /> : <Cards courses={courses} />}
-          </div>
-        </div>
 
+      <div className=" ">
+        <div>
+          <Filter
+            filterData={filterData}
+            category={category}
+            setCategory={setCategory}
+          />
+        </div>
+        <div className="flex flex-wrap justify-center items-center w-11/12 mx-auto max-w-[1200px] min-h-[50vh]">
+          {loading ? (
+            <Spinner />
+          ) : (
+            <Cards courses={courses} category={category} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

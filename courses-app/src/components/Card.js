@@ -23,7 +23,7 @@ const Card = (props) => {
   }
 
   return (
-    <div className="bg-bgDark w-[300px] rounded-md overflow-hidden bg-opacity-80">
+    <div className="bg-bgDark w-[320px] rounded-md overflow-hidden bg-opacity-80">
       <div className="relative">
         <img src={course.image.url} />
 
