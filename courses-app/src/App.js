@@ -19,7 +19,8 @@ function App() {
       let response = await fetch(apiUrl);
       let output = await response.json();
       setCourses(output.data);
-    } catch (error) {
+    }
+    catch (error) {
       toast.error("Something went wrong");
     }
 
@@ -34,14 +35,16 @@ function App() {
       <div>
         <Navbar />
       </div>
-      <div>
-        <Filter filterData={filterData} />
-      </div>
-      <div>
-        {
-          loading ? (<Spinner/>) : (<Cards courses={courses}/>)
-        }
-      </div>
+      
+        <div className="bg-bgDark2">
+          <div>
+            <Filter filterData={filterData} />
+          </div>
+          <div className="flex flex-wrap justify-center items-center w-11/12 mx-auto max-w-[1200px] min-h-[50vh]">
+            {loading ? <Spinner /> : <Cards courses={courses} />}
+          </div>
+        </div>
+
     </div>
   );
 }
